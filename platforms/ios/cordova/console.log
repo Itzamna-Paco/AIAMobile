@@ -1,0 +1,11 @@
+2014-07-05 08:37:14.125 AIA-Mobile[4606:90b] Multi-tasking -> Device: YES, App: YES
+2014-07-05 08:37:14.589 AIA-Mobile[4606:90b] Unlimited access to network resources
+2014-07-05 08:37:14.611 AIA-Mobile[4606:90b] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-07-05 08:37:22.505 AIA-Mobile[4606:90b] Resetting plugins due to page load.
+2014-07-05 08:37:26.505 AIA-Mobile[4606:90b] Finished load of: file:///Users/touch-a-licious/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/16BD4C01-2EF9-40D3-BFC2-9DA9FF0744B8/AIA-Mobile.app/www/index.html
