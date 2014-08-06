@@ -205,11 +205,15 @@ function feedLoaded(result) {
    tempDiv = document.createElement("div");
    tempDiv.innerHTML=content;
    
+   var cleanDesc=$(desc).text();
+
+   console.log("CONTENT OF DESC"+ " " +cleanDesc);
 
     myImage = tempDiv.getElementsByTagName("img");
 
     if(myImage[0]){
      imgURL= myImage[0].src;
+     console.log('Post contains at least one image');
 
      
     
@@ -249,7 +253,7 @@ function feedLoaded(result) {
    var itemToPass={ 'index': indexOfArticle,
    	  				'title': title,
 					'author':author,
-					'description': desc,
+					'description': cleanDesc,
 					'date':date,
 					'content': content,
 					'image_sources':arrOfImages,
@@ -277,7 +281,7 @@ function feedLoaded(result) {
     
    
 
-  rssoutput += ' <a href="relevance-dynamic-swiper.html'+'?index='+indexOfArticle+'"><li class="listItem"><div class="snippet-left-relevance"><img class="story-img" src="'+imgURL+'"></div><div class="snippet-right-relevance"><p class="snippet-title-relevance">'+title + '</p><span class="description-wrapper"  >'+ desc+'</span><p class="byline">by '+byline+'</p></div></li></a>';
+  rssoutput += ' <a href="relevance-dynamic-swiper.html'+'?index='+indexOfArticle+'"><li class="listItem"><div class="snippet-left-relevance"><img class="story-img" src="'+imgURL+'"></div><div class="snippet-right-relevance"><p class="snippet-title-relevance">'+title + '</p><span class="description-wrapper"  >'+ cleanDesc+'</span><p class="byline">by '+byline+'</p></div></li></a>';
 
 
   indexOfArticle++;

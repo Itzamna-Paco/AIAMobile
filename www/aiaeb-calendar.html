@@ -156,6 +156,17 @@
     
     });
 
+    $('#calendar-frame').on('click', 'a[href]', function(){
+
+      var aLink=this.href;
+       event.preventDefault();
+       alert(aLink);
+      var ref = window.open(aLink, '_blank', 'location=yes');
+      console.log("accessing : " + aLink);
+
+
+    });
+
 	</script>
 
 	 

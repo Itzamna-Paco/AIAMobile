@@ -20,6 +20,8 @@
     <title>Relevance</title> 
    <link href='http://fonts.googleapis.com/css?family=Muli:300,400,300italic' rel='stylesheet' type='text/css'>
    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+   <script type="text/javascript" charset="utf-8" src="../cordova-x.x.x.js"></script>
     
      <script src="js/jquery-1.7.1.min.js"></script>
 
@@ -190,12 +192,12 @@ p, h1,h2,h3{
 <ul class="social-media">
  <a class="emailLink" style="text-decoration:none" href="mailto:" ><li class="social-media-share"><p class="social-label">Email</p><img class="social-image" src="img/email-icon.png" width="50"> </li></a>
  <hr>
-  <a  style="text-decoration:none" class="linkedINShare" href="http://www.linkedin.com/shareArticle?mini=true&url=http://developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn"><li class="social-media-share"><p class="social-label">LinkedIn</p><img class="social-image" src="img/linkedin-icon.png" width="50"> </li></a>
+  <a  style="text-decoration:none" class="linkedINShare" href="#"><li class="social-media-share"><p class="social-label">LinkedIn</p><img class="social-image" src="img/linkedin-icon.png" width="50"> </li></a>
   <hr>
-  <a class="fbShare" style="text-decoration:none" hhref="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><li class="social-media-share"><p class="social-label">Facebook</p><img class="social-image" src="img/facebook-icon.png" width="50"> </li></a>
+  <a class="fbShare" style="text-decoration:none"  href="#"  onclick=""><li class="social-media-share"><p class="social-label">Facebook</p><img class="social-image" src="img/facebook-icon.png" width="50"> </li></a>
   <hr>
   
-  <a style="text-decoration:none" class="twitter popup" href="http://twitter.com/share"><li class="social-media-share"><p class="social-label">Twitter</p><img class="social-image" src="img/twitter-icon.png" width="50"> </li></a>
+  <a style="text-decoration:none" class="twitter popup" href="#" ><li class="social-media-share"><p class="social-label">Twitter</p><img class="social-image" src="img/twitter-icon.png" width="50"> </li></a>
   
   </ul>
 
@@ -391,12 +393,15 @@ var difference=localData.length - theIndex;
 
       /*var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+'<a href="#thetop">[Go Back to the top]</a></div>';*/
 
-      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'<a href="#thetop">[Go Back to the top]</a></div>';
+      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'</div>';
 
 
       appendSlide(slideContent);
+      updateLinksForInAppBrowser();
 
       setSocial(shareLink,title,desc);
+
+
       resizeNextPictures();
 
 if(nextIndex<=localData.length){
@@ -480,6 +485,14 @@ console.log("Were changing next index to : " +nextIndex);
 
   }
 
+  var updateLinksForInAppBrowser=function(){
+
+
+
+
+    
+  }
+
 
 var buildSlide=function(imgs,slideNum){
 
@@ -519,7 +532,7 @@ var buildSlide=function(imgs,slideNum){
         activeItem='<div class="item active"><img  id="image'+0+'" src="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/_bento_media/img/no-image-available.jpg" alt="First slide"></div>';
       }
        
-      var slideContent=' <h2 class="article-title" >'+title+'</h2>  <p>  <span class="author-byline">'+author+'</span>  <div class="articleText">'+contentNoImages+'<a href="#thetop">[Go Back to the top]</a></div>';
+      var slideContent=' <h2 class="article-title" >'+title+'</h2>  <p>  <span class="author-byline">'+author+'</span>  <div class="articleText">'+contentNoImages+'</div>';
 
 
       appendSlide(slideContent);
@@ -634,6 +647,7 @@ images=localData[indx].image_sources;
 contentNoImages = content ;
 
 buildSlide(images, indx);
+updateLinksForInAppBrowser();
 setSocial(shareLink,title,desc);
 
 
@@ -652,7 +666,16 @@ setSocial(shareLink,title,desc);
   console.log("ActiveLoopIndex: " +mySwiper.activeLoopIndex);
 
  
- 
+ $('.swiper-wrapper').on('click', 'a[href]', function(){
+
+      var aLink=this.href;
+       event.preventDefault();
+       
+      var ref = window.open(aLink, '_blank', 'location=yes');
+      console.log("accessing : " + aLink);
+
+
+    });
 
 
 //Magnificent popup
@@ -682,10 +705,11 @@ $('.emailLink').click(function(event){
 $('.linkedINShare').click(function(event){
 
  
+ 
 
 
-
-$(this).prop("href", shareLinkedIn);
+ //$(this).prop("onclick", shareLinkedIn);
+ var ref = window.open(shareLinkedIn, '_blank', 'location=yes');
 
 });
 
@@ -693,14 +717,16 @@ $('.fbShare').click(function(event){
 
  
 
- 
+ var ref = window.open(shareFB, '_blank', 'location=yes');
 
-$(this).prop("href", shareFB);
+//$(this).prop("href", shareFB);
 
 });
    
 $('.popup').click(function(event) {
-  $(this).prop("href", shareTwitter);
+
+  var ref = window.open( shareTwitter, '_blank', 'location=yes');
+ /* $(this).prop("href", shareTwitter);
     var width  = 200,
         height = 400,
         left   = ($(window).width()  - width)  / 2,
@@ -710,9 +736,11 @@ $('.popup').click(function(event) {
                  ',width='  + width  +
                  ',height=' + height +
                  ',top='    + top    +
-                 ',left='   + left;
+                 ',left='   + left  ;
+
+                 */
     
-    window.open(url, 'twitter', opts);
+   // window.open(url, 'twitter', opts);
 
     
  

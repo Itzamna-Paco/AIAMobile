@@ -451,8 +451,12 @@ var loadProfileCarousel= function(items){
   	  	var categoryToCompare=items[i].getElementsByTagName('title')[0].firstChild.nodeValue;
   	  	console.log("Category to compare: " + " " + categoryToCompare); 
 
+  	  	var match=categoryToCompare.match(/Project Profile/g);
 
-  	  	if (categoryToCompare==="Project Profile" || categoryToCompare==="Firm Profile"){
+
+
+
+  	  	if (match){
 
 
   	  		console.log("We have a Project Profile!!!!");
@@ -469,7 +473,7 @@ var loadProfileCarousel= function(items){
 
 
  	 		 document.getElementById("main-title").innerHTML= items[i].getElementsByTagName('category')[0].firstChild.nodeValue;
-  	  	}
+  	  	}  
   	  }
 
 	

@@ -217,12 +217,12 @@ width: inherit;
 <ul class="social-media">
  <a class="emailLink" href="mailto:"style="text-decoration:none" ><li class="social-media-share"><p class="social-label">Email</p><img class="social-image" src="img/email-icon.png" width="50"> </li></a>
  <hr>
-  <a  style="text-decoration:none" class="linkedINShare" href="http://www.linkedin.com/shareArticle?mini=true&url=http://developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn"><li class="social-media-share"><p class="social-label">LinkedIn</p><img class="social-image" src="img/linkedin-icon.png" width="50"> </li></a>
+  <a  style="text-decoration:none" class="linkedINShare" href="#"><li class="social-media-share"><p class="social-label">LinkedIn</p><img class="social-image" src="img/linkedin-icon.png" width="50"> </li></a>
   <hr>
-  <a class="fbShare" style="text-decoration:none" hhref="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"><li class="social-media-share"><p class="social-label">Facebook</p><img class="social-image" src="img/facebook-icon.png" width="50"> </li></a>
+  <a class="fbShare" style="text-decoration:none"  href="#"  onclick=""><li class="social-media-share"><p class="social-label">Facebook</p><img class="social-image" src="img/facebook-icon.png" width="50"> </li></a>
   <hr>
   
-  <a style="text-decoration:none" class="twitter popup" href="http://twitter.com/share"><li class="social-media-share"><p class="social-label">Twitter</p><img class="social-image" src="img/twitter-icon.png" width="50"> </li></a>
+  <a style="text-decoration:none" class="twitter popup" href="#" ><li class="social-media-share"><p class="social-label">Twitter</p><img class="social-image" src="img/twitter-icon.png" width="50"> </li></a>
   
   </ul>
 
@@ -734,10 +734,11 @@ $('.emailLink').click(function(event){
 $('.linkedINShare').click(function(event){
 
  
+ 
 
 
-
-$(this).prop("href", shareLinkedIn);
+ //$(this).prop("onclick", shareLinkedIn);
+ var ref = window.open(shareLinkedIn, '_blank', 'location=yes');
 
 });
 
@@ -745,14 +746,16 @@ $('.fbShare').click(function(event){
 
  
 
- 
+ var ref = window.open(shareFB, '_blank', 'location=yes');
 
-$(this).prop("href", shareFB);
+//$(this).prop("href", shareFB);
 
 });
    
 $('.popup').click(function(event) {
-  $(this).prop("href", shareTwitter);
+
+  var ref = window.open( shareTwitter, '_blank', 'location=yes');
+ /* $(this).prop("href", shareTwitter);
     var width  = 200,
         height = 400,
         left   = ($(window).width()  - width)  / 2,
@@ -762,14 +765,28 @@ $('.popup').click(function(event) {
                  ',width='  + width  +
                  ',height=' + height +
                  ',top='    + top    +
-                 ',left='   + left;
+                 ',left='   + left  ;
+
+                 */
     
-    window.open(url, 'twitter', opts);
+   // window.open(url, 'twitter', opts);
 
     
  
     
   });
+
+$('.swiper-wrapper').on('click', 'a[href]', function(){
+
+      var aLink=this.href;
+       event.preventDefault();
+       
+      var ref = window.open(aLink, '_blank', 'location=yes');
+      console.log("accessing : " + aLink);
+
+
+    });
+   
 
    
 
