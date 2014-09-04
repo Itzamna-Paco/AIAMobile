@@ -158,11 +158,12 @@ margin-top: 7%;
 }
 #homelogo{
 
-      height:14%;
-    width:100%;
-    background-color:white;
-    text-align:center;
-
+     height: 14%;
+width: 100%;
+background-color: white;
+text-align: center;
+margin-top: 10px;
+margin-bottom: -20px;
 
     }
  
