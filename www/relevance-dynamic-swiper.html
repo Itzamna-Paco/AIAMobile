@@ -528,8 +528,8 @@ var buildSlide=function(imgs,slideNum){
 
     } else{
 
-        console.log("We dont have image so lets return a dummy slideData");
-        activeItem='<div class="item active"><img  id="image'+0+'" src="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/_bento_media/img/no-image-available.jpg" alt="First slide"></div>';
+         console.log("We dont have image so lets return a dummy slideData");
+        activeItem='<div class="item active"></div>';
       }
        
       var slideContent=' <h2 class="article-title" >'+title+'</h2>  <p>  <span class="author-byline">'+author+'</span>  <div class="articleText">'+contentNoImages+'</div>';
@@ -746,6 +746,8 @@ $('.popup').click(function(event) {
  
     
   });
+
+ 
    
 
 });  

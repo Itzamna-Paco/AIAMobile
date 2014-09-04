@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:6
+-keep class com.sleek_geek.aia_mobile.AIAMobile { <init>(...); }
+

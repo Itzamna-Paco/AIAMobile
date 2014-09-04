@@ -288,7 +288,7 @@ width: 100%;
       .snippet-title-relevance{
         
         position: absolute;
-        width:inherit;
+        /*width:inherit;*/
 
          font-style: bold;
         font-size:14px;
@@ -309,7 +309,7 @@ width: 100%;
         position:absolute;
         margin-top:35px;
         
-        height: 2.75em;
+        height: 2.70em;
       }
 
       .description-wrapper > p{

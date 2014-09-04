@@ -183,7 +183,7 @@ width: inherit;
 <div id="static">
     <div id="header">
         
-         <a  style="color:#7D7366; text-decoration:none; margin-top:28px; " href="archnews.html"> <img id="navCloseButton" src="img/nav-bar-close.png"/></a>
+         <a  style="color:#7D7366; text-decoration:none; margin-top:28px;" href="archnews.html"> <img id="navCloseButton" src="img/nav-bar-close.png"/></a>
          <span id="header-archnews-dynamic-title" class="header-title">ArchNews</span>
          <div id="inline-popups"> <a  href="#test-popup" data-effect="mfp-newspaper"><span id="share"><img class="share-btn" src="img/nav-bar-share.png"/></span></a></div>
           <a   href="index.html" class="home-btn"><img id="home-btn-img" src="img/nav-bar-home.png"/></a>
@@ -298,13 +298,14 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
   images=[];
   indicators="";
   slideData="";
+  shareLink="";
 
 
 
   console.log("__________________Bulding NEXT Slide, sir____________________");
    
  //lets see if this is the last Index, if so, then build index 0, 
-  if (thisIndex==(localData.length -1)){
+  if (thisIndex==(localData.length)){
 
    console.log("This is the last index item, so lets build slide 0 instead")
 
@@ -392,7 +393,13 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
       appendSlide(slideContent);
       setSocial(shareLink,title,desc);
       
-
+ $('.swiper-slide').css({'height':'auto'});
+//Height of new active slide:
+var newHeight = 500;
+//Set new Height to slides and slider:
+$('.swiper-container, .swiper-slide').css({ height : newHeight });
+//And call reInit:
+mySwiper.reInit();
  
 
 
@@ -402,107 +409,7 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
 
 };
 
-var loadPreviouslides=function(dat,thisIndex){
-
-  var previIndex=(parseInt(thisIndex)-1);
-  console.log(previIndex);
-   console.log(previIndex);
-   images=[];
-  indicators="";
-  slideData="";
-
-
-console.log("___________________building PREVIOUS Slide, sir______________________");
-//let's determine what the previous index should be....
-
-if (thisIndex==0){
-
-  console.log("This is the first index item, so lets build slide  the last slide instead, which is : " +(localData.length-1));
-
-    previIndex=localData.length-1;
-
-   loadedSlides.push(previIndex);
-
-     title=localData[previIndex].title;
-      author=localData[previIndex].author;
-      desc=localData[previIndex].description;
-      content=localData[previIndex].content;
-
-      console.log(title);
-      console.log(author);
  
-      images=localData[previIndex].image_sources;
- 
-      console.log(images);
-      contentNoImages = content.replace(/<img[^>]*>/g,"");
-
- } else {
-  
-   console.log("This Index is not the First one" + " So we can build number "  + (thisIndex-1) + " now");
-
-    loadedSlides.push(previIndex)
-
-      title=localData[previIndex].title;
-      author=localData[previIndex].author;
-      desc=localData[previIndex].description;
-      content=localData[previIndex].content;
-
-      console.log(title);
-      console.log(author);
- 
-      images=localData[previIndex].image_sources;
- 
-      console.log(images);
-      contentNoImages = content.replace(/<img[^>]*>/g,"");
-
-
-      } 
-
-      if(images.length>0){
-            console.log("With"+" " +images.length+" images");
-
-              activeItem='<div class="item active"><img  id="image'+s+'" src="'+images[0]+'" alt="First slide"></div>'
-
-          for(var s=0; s<images.length; s++){
-
-             indicators+='<li data-target="#carousel-'+previIndex+'" data-slide-to="'+s+'" ></li>';
-
-             }
-
-          for(var s=1; s<images.length; s++){
-
-             if(images.length==1){
-                console.log('bulding first carousel image');
-                 
-                slideData=activeItem;
-
-             }else if (images.length>1){
-              
-               slideData+='<div class="item"><img  src="'+images[s]+'"></div>';
-               console.log("building a slide for image:" +images[s]);
-
-              }
-     
-          }
-
-  } else{
-
-        console.log("We dont have image so lets return a dummy slideData");
-        activeItem='<div class="item active"></div>';
-         
-      }
-
-
-       var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div  class="articleText">'+contentNoImages+'<a href="#the-top">[Go Back to the top]</a></div>';
-
-
-       appendSlide(slideContent);
-       
-
-
-
-
-}
 
  var mySwiper = new Swiper('.swiper-container',{
     //Your options here:
@@ -523,8 +430,12 @@ if (thisIndex==0){
     },
     onSlideNext: function(){
       console.log("next slide: " + activeIndex);
+
+      if(activeIndex<=localData.length){
       activeIndex=activeIndex+1;
+      }
       loadNextslides(localData,  activeIndex);
+
 
     },
     onSlidePrev: function(){
@@ -553,6 +464,9 @@ var prependSlide= function(cnt){
       //newSlide.prepend(activeIndex);
       console.log("Prenending Slide!!!!!");
 
+      //First of all unset slide's height:
+
+
 
   }
 
@@ -563,6 +477,8 @@ var prependSlide= function(cnt){
   mySwiper.appendSlide(newSlide);
       //newSlide.appendSlide(activeIndex);
       console.log("Appending Slide!!!!!");
+
+     
 
 
   }
@@ -681,9 +597,10 @@ images=localData[indx].image_sources;
  
 contentNoImages = content.replace(/<img[^>]*>/g,"");
 
+
 buildSlide(images, indx);
 
-console.log("trying to set share options");
+ updateLinksForInAppBrowser();
 
 setSocial(shareLink,title,desc);
 
