@@ -206,7 +206,7 @@ width: inherit;
     </div><!--/////End of the swiper slide wrapper....all swipers must be above this line-->
 
   </div><!--//////End of the swiper container -->
-  <a href="#thetop">[Go Back to the top]</a>
+  
 </div><!--page, viewnews this has to be the end of the whole document-->
 
 
@@ -286,7 +286,19 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
 
 
  
+var countWords = function(cnt){
 
+
+
+cnt =cnt.replace(/(^\s*)|(\s*$)/gi,"");
+cnt =cnt.replace(/[ ]{2,}/gi," ");
+cnt =cnt.replace(/\n /, "\n");
+
+ var wrdcnt= cnt.split(' ').length;
+
+console.log("counting " +wrdcnt+ "  words...");
+return wrdcnt;
+};
 
 
  var loadNextslides=function(dat,thisIndex){
@@ -395,7 +407,21 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
       
  $('.swiper-slide').css({'height':'auto'});
 //Height of new active slide:
-var newHeight = 500;
+
+//need to calculate the height of the whole largest index
+//new function will return the largerst content getContentHeight()
+//It will take a variable of the biggest stored contentHeight, compare this slide to it and if bigger, replace it, if not, leave it alone
+//The getContentHeightMethod will count the words on the page, taking into account the font-size, screen-width, and any image heights. It will add them up together and give a close etimate of the height required, then set the new height below to what it returns....
+
+
+//getContentHeight()
+//First lets count how many words there are in the item by using the countWords() method
+
+
+var howManyWords= countWords(content);
+console.log("we got " + howManyWords + " from the function")
+
+var newHeight = howManyWords*7;
 //Set new Height to slides and slider:
 $('.swiper-container, .swiper-slide').css({ height : newHeight });
 //And call reInit:
@@ -600,7 +626,7 @@ contentNoImages = content.replace(/<img[^>]*>/g,"");
 
 buildSlide(images, indx);
 
- updateLinksForInAppBrowser();
+ //updateLinksForInAppBrowser();
 
 setSocial(shareLink,title,desc);
 
