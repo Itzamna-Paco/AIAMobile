@@ -24,7 +24,7 @@
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">google.load("feeds","1"); </script>
+    
 
 
      <link  rel="stylesheet" href="css/idangerous.swiper.css">
@@ -399,7 +399,7 @@ return wrdcnt;
             }
       
 
-      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+'<a href="#the-top">[Go Back to the top]</a></div>';
+      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+'<div onclick="scrollToTop();"> [ Go Back to the top ] </div></div>';
 
 
       appendSlide(slideContent);
@@ -610,7 +610,11 @@ console.log("title:" + " " + cleanTitle);
 
 
  };
+var scrollToTop = function(){
 
+console.log("scrolling to top");
+
+};
 
  var initFirstSlides=function(indx){
    title=localData[indx].title;
@@ -731,8 +735,7 @@ $('.swiper-wrapper').on('click', 'a[href]', function(){
     });
    
 
-   
-
+ 
    
 
 });  

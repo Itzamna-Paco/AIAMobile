@@ -40,7 +40,7 @@
       .header-title{
       font-family:'Muli', Helvetica, Arial, sans-serif;
         position:absolute;
-        text-align: left;
+        text-align: center;
         margin-top:30px;
         /*margin-left:-10%;*/
 
@@ -585,9 +585,10 @@ text-shadow:2px 2px 8px #151515;
       .description-wrapper {
         overflow:hidden;
         position:absolute;
-        margin-top:35px;
+        margin-top:37px;
+        margin-right:5px;
         
-        height: 2.75em;
+        height: 2.70em;
       }
 
       .description-wrapper > p{
@@ -743,6 +744,7 @@ margin-right: -40px;
      margin-left:10px;
      margin-right:5px;
      margin-top:100px;
+     text-decoration: none;
 }
 .author-byline{
 font-size: 10pt;
@@ -858,8 +860,8 @@ color:#224E84;
         position:absolute;
         margin-top:30px;
         margin-left:-15px;
-        margin-right: -25px;
-        width:inherit;
+        width:100%;
+
 
 
       }
