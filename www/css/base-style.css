@@ -94,16 +94,7 @@ margin-left: -40px;
 
      
   
-    .header-title{
-
-      
-
-       font-size:15px;
-        font-weight:400;
-        margin-top:20px;
-        margin-left: -20%;
-
-    }
+    
 
 }
 
@@ -569,7 +560,7 @@ text-shadow:2px 2px 8px #151515;
        /* width:inherit;*/
 
          font-style: bold;
-        font-size:14px;
+        font-size:16px;
         line-height:110%;
         font-family:'Lato', Arial, sans-serif;color:#201D15;
         margin-top:5px;
@@ -585,10 +576,11 @@ text-shadow:2px 2px 8px #151515;
       .description-wrapper {
         overflow:hidden;
         position:absolute;
-        margin-top:37px;
+        margin-top:40px;
         margin-right:5px;
+        font-size:14px;
         
-        height: 2.70em;
+        height: 2.30em;
       }
 
       .description-wrapper > p{
@@ -676,7 +668,6 @@ width:100%;
 */
 width: 40px;
 height: 40px;
-/* margin-top: -10px; */
 float: left;
 margin-top: 20px;
 margin-left: -40px;

@@ -35,6 +35,12 @@ p
 a, a:link, a:active, a:visited, a:hover
 {
 	color: #333;
+	text-decoration: none;
+}
+.articleText > a {
+
+
+	 
 	text-decoration: underline;
 }
 pre

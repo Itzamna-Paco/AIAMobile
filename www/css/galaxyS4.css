@@ -290,17 +290,10 @@ width: 100%;
         position: absolute;
         /*width:inherit;*/
 
-         font-style: bold;
-        font-size:14px;
-        line-height:110%;
-        font-family:'Muli',Helvetica, Arial, sans-serif;color:#201D15;
-        margin-top:5px;
-        max-height: 2.2em;
-        margin-right:8px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-          word-wrap: break-word;
-         margin-left:2px;
+         
+         
+       
+        
 
          
       }

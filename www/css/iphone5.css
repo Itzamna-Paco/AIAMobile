@@ -393,13 +393,13 @@ border-style: solid;
       .snippet-title-relevance{
         
         position: absolute;
-        width:inherit;
+        /*width:inherit;*/
 
 
 
 
          font-style: bold;
-        font-size:14px;
+        font-size:16px;
         line-height:110%;
         font-family:'Muli',Helvetica, Arial, sans-serif;color:#201D15;
         margin-top:5px;
@@ -419,10 +419,11 @@ border-style: solid;
          
         overflow:hidden;
         position:absolute;
-        margin-top:38px;
+        margin-top:40px;
+        font-size:13px;
 
         
-        height: 2.75em;
+        height: 2.60em;
 
 
 
