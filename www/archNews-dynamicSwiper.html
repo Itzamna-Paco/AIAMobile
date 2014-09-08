@@ -303,7 +303,10 @@ return wrdcnt;
 
  var loadNextslides=function(dat,thisIndex){
 
+  
+
   var nextIndex=(parseInt(thisIndex)+1);
+  loadedSlides.push(thisIndex);
   console.log(thisIndex);
    console.log(nextIndex);
 
@@ -315,6 +318,7 @@ return wrdcnt;
 
 
   console.log("__________________Bulding NEXT Slide, sir____________________");
+  console.log("Now our loaded array contains this :" + loadedSlides); 
    
  //lets see if this is the last Index, if so, then build index 0, 
   if (thisIndex==(localData.length)){
@@ -457,9 +461,19 @@ mySwiper.reInit();
     onSlideNext: function(){
       console.log("next slide: " + activeIndex);
 
-      if(activeIndex<=localData.length){
+      if(activeIndex < localData.length){
       activeIndex=activeIndex+1;
+      console.log("active index is: "+ activeIndex +" , and localData has "+localData.length+ " items");
+      } else{
+
+      console.log("Reached the end at active index : "+ activeIndex +" , so resetting activeIndex to 0");
+      activeIndex=0;
+
+
       }
+
+
+
       loadNextslides(localData,  activeIndex);
 
 
@@ -512,8 +526,11 @@ var prependSlide= function(cnt){
 
 var buildSlide=function(imgs,slideNum){
 
+  loadedSlides.push(slideNum);
 
-  console.log("building Slide 1");
+
+
+  console.log("building Slide 1 and pushing slideNUM " + slideNum+ "to loadedSlides array");
     if(imgs.length>0){
       console.log("With"+" " +imgs.length+" images");
 
@@ -558,7 +575,7 @@ var buildSlide=function(imgs,slideNum){
 
       */
 
-      var slideContent='<a id="thetop"><h2 class="article-title" >'+title+'</h2></a> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText">'+contentNoImages+'<a href="#the-top">[Go Back to the top]</a></div>';
+      var slideContent='<a id="thetop"><h2 class="article-title" >'+title+'</h2></a> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText">'+contentNoImages+'<a href="#the-top"> [Go Back to the top] </a></div>';
 
 
       appendSlide(slideContent);
@@ -627,7 +644,7 @@ images=localData[indx].image_sources;
  
 contentNoImages = content.replace(/<img[^>]*>/g,"");
 
-
+//lets add the theIndex to the loaded array:
 buildSlide(images, indx);
 
  //updateLinksForInAppBrowser();

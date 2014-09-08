@@ -428,6 +428,7 @@ width: 320px;
   	var articleLink="";
   	var dataToStore=[];
   	var itemToPass="";
+  	var profileIndex="";
 
 		 
  
@@ -460,6 +461,7 @@ var loadProfileCarousel= function(items){
 
 
   	  		console.log("We have a Project Profile!!!!");
+  	  		profileIndex=i;
   	  		mainArticleTitle= items[i].getElementsByTagName('title')[0].firstChild.nodeValue;
  	 		console.log(items);
  	 		mainArticleAuhtor=items[i].getElementsByTagName('author')[0].firstChild.nodeValue;
@@ -644,7 +646,7 @@ arrOfImages=[];
    for (var i = 0; i < items.length-1; i++) {
      item= items[i];
 
-     if(item.getElementsByTagName('title')[0].firstChild.nodeValue==="Project Profile" || item.getElementsByTagName('title')[0].firstChild.nodeValue==="Firm Profile"){
+     if(i===profileIndex){
 
      	console.log(item);
 
