@@ -284,7 +284,7 @@ var localData=JSON.parse(localStorage.getItem('archNewsData'));
 
  console.log(localData);
 
-
+ 
  
 var countWords = function(cnt){
 
@@ -303,7 +303,7 @@ return wrdcnt;
 
  var loadNextslides=function(dat,thisIndex){
 
-  
+
 
   var nextIndex=(parseInt(thisIndex)+1);
   loadedSlides.push(thisIndex);
@@ -403,7 +403,7 @@ return wrdcnt;
             }
       
 
-      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+'<div onclick="scrollToTop();"> [ Go Back to the top ] </div></div>';
+      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+' <input class="goToTopButton" type="button" onclick="$(window).scrollTop(0);" value="[Go Back to Top]"   > </input></div>';
 
 
       appendSlide(slideContent);
@@ -428,6 +428,9 @@ console.log("we got " + howManyWords + " from the function")
 var newHeight = howManyWords*7;
 //Set new Height to slides and slider:
 $('.swiper-container, .swiper-slide').css({ height : newHeight });
+
+console.log("The new height: " + newHeight);
+
 //And call reInit:
 mySwiper.reInit();
  
@@ -575,7 +578,7 @@ var buildSlide=function(imgs,slideNum){
 
       */
 
-      var slideContent='<a id="thetop"><h2 class="article-title" >'+title+'</h2></a> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText">'+contentNoImages+'<a href="#the-top"> [Go Back to the top] </a></div>';
+      var slideContent='<a id="thetop"><h2 class="article-title" >'+title+'</h2></a> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText">'+contentNoImages+'<input class="goToTopButton" type="button" onclick="$(window).scrollTop(0);" value="[Go Back to Top]"   > </input></div>';
 
 
       appendSlide(slideContent);
@@ -627,11 +630,7 @@ console.log("title:" + " " + cleanTitle);
 
 
  };
-var scrollToTop = function(){
 
-console.log("scrolling to top");
-
-};
 
  var initFirstSlides=function(indx){
    title=localData[indx].title;
@@ -751,8 +750,16 @@ $('.swiper-wrapper').on('click', 'a[href]', function(){
 
     });
    
+$('.go-back-top').on('click', function(){
+ 
+alert('hello!')
+ $(window).scrollTop(0);
+
+});
+
 
  
+
    
 
 });  

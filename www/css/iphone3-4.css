@@ -873,3 +873,92 @@ color:#224E84;
 
       }
 
+ /*****<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<(((((((((((((((((AiAEB-NEWS)))))))))))))))))>>>>>>>>>>>>>>>>>>>>>*/
+
+
+      #header-aiaebnews-title{
+
+        color:#224E84;
+
+    }
+
+
+       
+        
+      .story-img-aiaebNews{
+         
+        width:90px;
+        height:88px;
+ 
+
+
+      }
+      
+ 
+
+        .listItem-aiaebNews div {
+            display: table-cell;
+
+
+             
+
+        }
+
+
+
+ 
+
+      .snippet-left-aiaebNews{
+         
+          
+        width:20%;
+
+         
+
+        
+      }
+      .snippet-right-aiaebNews{
+
+           
+        width:80%;
+         
+         
+
+
+      }
+
+      .snippet-title-aiaebNews{
+        
+        position: absolute;
+         
+
+
+
+
+
+         font-style: bold;
+        font-size:16px;
+         
+        font-family:'Lato';color:#201D15;
+        /*margin-top:5px;*/
+        max-height: 2.5em;
+        margin-right:-2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+          word-wrap: break-word;
+          /*width:67%;*/
+         
+        margin-left:2px;
+
+         
+      }
+      .description-wrapper-aiaebNews {
+        overflow:hidden;
+        position:absolute;
+        margin-top:42px;
+        margin-right:5px;
+        font-size:13px;
+        margin-left:2px;
+        
+        height: 2.30em;
+      }

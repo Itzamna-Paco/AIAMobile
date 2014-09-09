@@ -311,7 +311,19 @@ console.log("JSON data: " + " " + localData);
 var difference=localData.length - theIndex;
   
 
+var countWords = function(cnt){
 
+
+
+cnt =cnt.replace(/(^\s*)|(\s*$)/gi,"");
+cnt =cnt.replace(/[ ]{2,}/gi," ");
+cnt =cnt.replace(/\n /, "\n");
+
+ var wrdcnt= cnt.split(' ').length;
+
+console.log("counting " +wrdcnt+ "  words...");
+return wrdcnt;
+};
  
 
 
@@ -423,25 +435,92 @@ var difference=localData.length - theIndex;
       
 
       
-      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'</div>';
+      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'<input class="goToTopButton" type="button" onclick="$(window).scrollTop(0);" value="[Go Back to Top]"   > </input></div>';
 
 
       appendSlide(slideContent);
 
       setSocial(shareLink,title,desc);
+
+         $('.swiper-slide').css({'height':'auto'});
+
+         var heightOfDevice= $(window).height();
+
+        var conversionScreenHeight=680/heightOfDevice;
+
+        var howManyWords= countWords(content);
+
+        console.log("we got " + howManyWords + " from the function and a device height of : " + heightOfDevice + " and  conversion of screen factor :" + conversionScreenHeight);
+
+        var newHeight= 0;
+
+if (howManyWords>0 && howManyWords<=500){
+
+
+  newHeight=howManyWords*10.0;
+} else if (howManyWords> 501 && howManyWords<=1000){
+
+  newHeight=howManyWords*7.0;
+
+} else if (howManyWords> 1000 && howManyWords<=2000){
+
+  newHeight=howManyWords*5.0;
+
+} else if (howManyWords> 2000 && howManyWords<=3000){
+
+  newHeight=howManyWords*4.9;
+   
+}else if (howManyWords> 3000 && howManyWords<4000){
+
+  newHeight=howManyWords*4.7;
+   
+}else if (howManyWords> 4000 && howManyWords<5000){
+
+  newHeight=howManyWords*4.5;
+   
+} else {
+
+  newHeight=howManyWords*4.0;
+}
+
+if (newHeight< heightOfDevice){
+
+  newHeight=heightOfDevice;
+
+  //now remove the go to top message
+
+   $('.swiper-slide-active').find(".goToTopButton").hide();
+
+
+}
+
+
+
+ console.log(" the new height is : " + newHeight);
+ 
+
+//now adjust for screen heights
+ newHeight=newHeight*conversionScreenHeight;
+  
+
+
+$('.swiper-container, .swiper-slide').css({ height : newHeight });
+//And call reInit:
+mySwiper.reInit();
+
+
+
+
+
+
+
       resizeNextPictures();
 
 
 
       //now Lets resize the swiper-container...
 
-     var newSwiperVisibleHeight= $('.swiper-slide-visible').css("height");
-     var newSwiperWrapperHeight= $('.swiper-wrapper').css("height");
-
-     console.log("|||||||||||||||||||||| swiper-visible: " + newSwiperVisibleHeight +" " + "swiper-wrapper: " + newSwiperWrapperHeight);
-
-     $('.swiper-slide-visible').css("height","200px");
-     $('.swiper-wrapper').css("height","200px");
+       
 
 if(nextIndex<=localData.length){
 nextIndex=nextIndex+1;

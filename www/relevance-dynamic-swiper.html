@@ -180,7 +180,7 @@ p, h1,h2,h3{
     </div><!--/////End of the swiper slide wrapper....all swipers must be above this line-->
 
   </div><!--//////End of the swiper container -->
-  <a href="#thetop">[Go Back to the top]</a>
+ 
    
 </div><!--page, viewnews this has to be the end of the whole document-->
 
@@ -268,7 +268,7 @@ var shareLink="";
 var shareLinkedIn="";
 var shareTwitter="";
 var shareFB="";
-
+var highestContentValue="";
 
 
 
@@ -283,6 +283,19 @@ var difference=localData.length - theIndex;
 
 
  
+var countWords = function(cnt){
+
+
+
+cnt =cnt.replace(/(^\s*)|(\s*$)/gi,"");
+cnt =cnt.replace(/[ ]{2,}/gi," ");
+cnt =cnt.replace(/\n /, "\n");
+
+ var wrdcnt= cnt.split(' ').length;
+
+console.log("counting " +wrdcnt+ "  words...");
+return wrdcnt;
+};
 
 
  var loadNextslides=function(dat,thisIndex){
@@ -393,13 +406,85 @@ var difference=localData.length - theIndex;
 
       /*var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span><div id="carousel-'+theIndex+'" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators">'+indicators+'</ol><div class="carousel-inner">'+activeItem+slideData+'</div>   </div>  <div class="articleText" >'+contentNoImages+'<a href="#thetop">[Go Back to the top]</a></div>';*/
 
-      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'</div>';
+      var slideContent='<h2 class="article-title" >'+title+'</h2> <p>  <span class="author-byline">'+author+'</span>  <div class="articleText" >'+contentNoImages+'<input class="goToTopButton" type="button" onclick="$(window).scrollTop(0);" value="[Go Back to Top]"   > </input></div>';
 
 
       appendSlide(slideContent);
       updateLinksForInAppBrowser();
 
       setSocial(shareLink,title,desc);
+       $('.swiper-slide').css({'height':'auto'});
+//Height of new active slide:
+
+//need to calculate the height of the whole largest index
+//new function will return the largerst content getContentHeight()
+//It will take a variable of the biggest stored contentHeight, compare this slide to it and if bigger, replace it, if not, leave it alone
+//The getContentHeightMethod will count the words on the page, taking into account the font-size, screen-width, and any image heights. It will add them up together and give a close etimate of the height required, then set the new height below to what it returns....
+
+
+//getContentHeight()
+//First lets count how many words there are in the item by using the countWords() method
+var heightOfDevice= $(window).height();
+
+var conversionScreenHeight=680/heightOfDevice;
+
+var howManyWords= countWords(content);
+console.log("we got " + howManyWords + " from the function and a device height of : " + heightOfDevice + " and  conversion of screen factor :" + conversionScreenHeight);
+
+//var newHeight = howManyWords*( howManyWords*(1/(howManyWords/7)) );
+
+var newHeight= 0;
+
+if (howManyWords>0 && howManyWords<=1000){
+
+
+  newHeight=howManyWords*7.5;
+} else if (howManyWords> 1000 && howManyWords<=2000){
+
+  newHeight=howManyWords*5.0;
+
+} else if (howManyWords> 2000 && howManyWords<=3000){
+
+  newHeight=howManyWords*4.9;
+   
+}else if (howManyWords> 3000 && howManyWords<4000){
+
+  newHeight=howManyWords*4.7;
+   
+}else if (howManyWords> 4000 && howManyWords<5000){
+
+  newHeight=howManyWords*4.5;
+   
+} else {
+
+  newHeight=howManyWords*6.0;
+}
+
+if (newHeight< heightOfDevice){
+
+  newHeight=heightOfDevice;
+
+  //now remove the go to top message
+
+   $('.swiper-slide-active').find(".goToTopButton").hide();
+
+
+}
+
+
+
+ console.log(" the new height is : " + newHeight);
+ 
+
+//now adjust for screen heights
+ newHeight=newHeight*conversionScreenHeight;
+  
+
+
+$('.swiper-container, .swiper-slide').css({ height : newHeight });
+//And call reInit:
+mySwiper.reInit();
+
 
 
       resizeNextPictures();
@@ -436,7 +521,9 @@ console.log("Were changing next index to : " +nextIndex);
      
      onSlideChangeEnd: function() {
       //Do something when you touch the slide
+
       console.log("touched the slide: " + mySwiper.activeLoopIndex);
+
       $(window).scrollTop(0);
        
 
@@ -532,7 +619,7 @@ var buildSlide=function(imgs,slideNum){
         activeItem='<div class="item active"></div>';
       }
        
-      var slideContent=' <h2 class="article-title" >'+title+'</h2>  <p>  <span class="author-byline">'+author+'</span>  <div class="articleText">'+contentNoImages+'</div>';
+      var slideContent=' <h2 class="article-title" >'+title+'</h2>  <p>  <span class="author-byline">'+author+'</span>  <div class="articleText">'+contentNoImages+'<input class="goToTopButton" type="button" onclick="$(window).scrollTop(0);" value="[Go Back to Top]"   > </input></div>';
 
 
       appendSlide(slideContent);
@@ -571,6 +658,7 @@ var buildSlide=function(imgs,slideNum){
        var shareEmail="mailto:?subject=Great%20Article%20from%20AIA%20California%20Relevance&body="+title+" " + "\r\n"+ shareLink ;
 
      $('.emailLink').attr('href', shareEmail);
+
 
 
 
